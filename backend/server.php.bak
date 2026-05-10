@@ -1,0 +1,291 @@
+<?php
+/**
+ * Minimal Laravel-like Server Bootstrap
+ * Provides API endpoints for the chatbot without full Laravel installation
+ */
+
+// Configuration
+define('BASE_PATH', __DIR__);
+define('DB_HOST', 'localhost');
+define('DB_NAME', 'legal_chatbot');
+define('DB_USER', 'root');
+define('DB_PASS', '');
+
+// Disable execution time limit for long-running server
+set_time_limit(0);
+ini_set('default_socket_timeout', -1);
+
+// Simple router
+$request_method = $_SERVER['REQUEST_METHOD'] ?? 'GET';
+$request_uri = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH);
+$request_body = file_get_contents('php://input');
+$query_string = $_SERVER['QUERY_STRING'] ?? '';
+
+// Enable CORS
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
+header('Access-Control-Allow-Headers: Content-Type, Authorization');
+header('Content-Type: application/json');
+mb_internal_encoding("UTF-8");
+
+if ($request_method === 'OPTIONS') {
+    http_response_code(200);
+    exit;
+}
+
+// Connect to database
+try {
+    $dbPath = __DIR__ . '/database/database.sqlite';
+    $pdo = new PDO("sqlite:" . $dbPath);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (Exception $e) {
+    http_response_code(500);
+    echo json_encode(['error' => 'Database connection failed: ' . $e->getMessage()]);
+    exit;
+}
+
+// Route handler
+try {
+    // Chat endpoint
+    if ($request_uri === '/api/chat/send' && $request_method === 'POST') {
+        $data = json_decode($request_body, true);
+        $message = $data['message'] ?? '';
+        
+        if (empty($message)) {
+            http_response_code(422);
+            echo json_encode(['error' => 'Message is required']);
+            exit;
+        }
+        
+        // Use the ChatMatchingService logic
+        $response = processChatMessage($message, $pdo);
+        echo json_encode($response);
+        exit;
+    }
+    
+    // Admin login
+    if ($request_uri === '/api/login' && $request_method === 'POST') {
+        $data = json_decode($request_body, true);
+        $email = $data['email'] ?? '';
+        $password = $data['password'] ?? '';
+        
+        if (empty($email) || empty($password)) {
+            http_response_code(422);
+            echo json_encode(['error' => 'Email and password required']);
+            exit;
+        }
+        
+        // Check credentials
+        $stmt = $pdo->prepare("SELECT id, email, password FROM users WHERE email = ?");
+        $stmt->execute([$email]);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        if (!$user || !password_verify($password, $user['password'])) {
+            http_response_code(401);
+            echo json_encode(['error' => 'Invalid credentials']);
+            exit;
+        }
+        
+        // Generate token (simple random token for demo)
+        $token = bin2hex(random_bytes(32));
+        $stmt = $pdo->prepare("INSERT INTO personal_access_tokens (tokenable_type, tokenable_id, name, token, abilities, created_at) VALUES (?, ?, ?, ?, ?, NOW())");
+        $stmt->execute(['App\\Models\\User', $user['id'], 'API Token', $token, json_encode(['*'])]);
+        
+        echo json_encode([
+            'token' => $token,
+            'user' => ['id' => $user['id'], 'email' => $user['email']]
+        ]);
+        exit;
+    }
+    
+    // Dashboard
+    if ($request_uri === '/api/admin/dashboard' && $request_method === 'GET') {
+        $response = [];
+        
+        // Total questions
+        $stmt = $pdo->query("SELECT COUNT(*) as count FROM questions");
+        $response['total_questions'] = $stmt->fetch(PDO::FETCH_ASSOC)['count'];
+        
+        // Total unanswered
+        $stmt = $pdo->query("SELECT COUNT(*) as count FROM unanswered_questions WHERE resolved = 0");
+        $response['total_unanswered'] = $stmt->fetch(PDO::FETCH_ASSOC)['count'];
+        
+        // Total procedures
+        $stmt = $pdo->query("SELECT COUNT(*) as count FROM legal_procedures");
+        $response['total_procedures'] = $stmt->fetch(PDO::FETCH_ASSOC)['count'];
+        
+        echo json_encode($response);
+        exit;
+    }
+    
+    // 404
+    http_response_code(404);
+    echo json_encode(['error' => 'Endpoint not found']);
+    
+} catch (Exception $e) {
+    http_response_code(500);
+    echo json_encode(['error' => $e->getMessage()]);
+}
+
+// Helper function to normalize text (moved outside)
+function normalizeText($text, $diacritics, $characterMap) {
+    // Remove diacritics
+    foreach ($diacritics as $char) {
+        $text = str_replace($char, '', $text);
+    }
+    
+    // Replace variant characters
+    $text = strtr($text, $characterMap);
+    
+    // Convert to lowercase and trim
+    return mb_strtolower(trim($text), 'UTF-8');
+}
+
+/**
+ * Process chat message using Arabic NLP
+ */
+function processChatMessage($message, $pdo) {
+    // Arabic diacritical marks and character mapping
+    $diacritics = [
+        'ً', 'ٌ', 'ٍ', 'َ', 'ُ', 'ِ', 'ّ', 'ْ', // Arabic diacritics
+        'ـ', // Tatweel
+    ];
+    
+    $characterMap = [
+        'أ' => 'ا', 'إ' => 'ا', 'آ' => 'ا', // Alef variants
+        'ة' => 'ه', // Teh Marbuta
+        'ى' => 'ي', // Alef Maksura
+    ];
+    
+    // Normalize input
+    $normalized = normalizeText($message, $diacritics, $characterMap);
+    
+    // Tokenize (split by spaces and punctuation)
+    $tokens = preg_split('/[\s\p{P}]+/u', $normalized, -1, PREG_SPLIT_NO_EMPTY);
+    $tokens = array_filter($tokens);
+    
+    // Arabic stop words
+    $stopWords = [
+        'في', 'من', 'إلى', 'هل', 'ما', 'هو', 'هي', 'و', 'أو', 'لا', 'ل', 'كيف',
+        'أين', 'متى', 'كم', 'ماذا', 'لماذا', 'هنا', 'هناك', 'التي', 'الذي',
+        'هذا', 'تلك', 'عن', 'مع', 'أن', 'بدون', 'بين', 'خلال', 'عند', 'لدى'
+    ];
+    
+    // Filter stop words  
+    $contentTokens = array_filter($tokens, function($token) use ($stopWords) {
+        return !in_array($token, $stopWords) && strlen($token) > 1;
+    });
+    $contentTokens = array_values($contentTokens);
+    
+    // Find matching procedure
+    $bestMatch = null;
+    $bestScore = 0;
+    
+    $debug = [
+        'normalized' => $normalized,
+        'tokens' => $contentTokens,
+        'matches' => []
+    ];
+    
+    try {
+        $stmt = $pdo->query("
+            SELECT lp.id, lp.title, lp.description, lp.summary
+            FROM legal_procedures lp
+            WHERE lp.language_id = (SELECT id FROM languages WHERE code = 'ar' LIMIT 1)
+        ");
+        
+        while ($procedure = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $score = 0;
+            $totalWeight = 0;
+            
+            // Get keywords for this procedure
+            $kStmt = $pdo->prepare("SELECT keyword as word, weight FROM keywords WHERE legal_procedure_id = ? ORDER BY weight DESC");
+            $kStmt->execute([$procedure['id']]);
+            
+            while ($keyword = $kStmt->fetch(PDO::FETCH_ASSOC)) {
+                $totalWeight += $keyword['weight'];
+                
+                // Normalize keyword
+                $keywordNorm = normalizeText($keyword['word'], $diacritics, $characterMap);
+                
+                // Check if keyword (or part of it) is in content tokens
+                $found = false;
+                if (in_array($keywordNorm, $contentTokens)) {
+                    $score += $keyword['weight'];
+                    $found = true;
+                } else {
+                    // Try substring matching for compound keywords
+                    foreach ($contentTokens as $token) {
+                        if (strpos($keywordNorm, $token) !== false || strpos($token, $keywordNorm) !== false) {
+                            $score += ceil($keyword['weight'] / 2);
+                            $found = true;
+                            break;
+                        }
+                    }
+                }
+            }
+            
+            // Calculate normalized score
+            if ($totalWeight > 0 && count($contentTokens) > 0) {
+                $normalizedScore = min(1.0, $score / $totalWeight);
+                $debug['matches'][] = ['id' => $procedure['id'], 'title' => $procedure['title'], 'score' => $score, 'total' => $totalWeight, 'norm' => $normalizedScore];
+                
+                if ($normalizedScore > $bestScore) {
+                    $bestScore = $normalizedScore;
+                    $bestMatch = $procedure;
+                }
+            }
+        }
+    } catch (Exception $e) {
+        $debug['error'] = $e->getMessage();
+    }
+    
+    // Get language ID
+    try {
+        $langStmt = $pdo->prepare("SELECT id FROM languages WHERE code = 'ar' LIMIT 1");
+        $langStmt->execute();
+        $lang = $langStmt->fetch(PDO::FETCH_ASSOC);
+        $langId = $lang ? $lang['id'] : 1;
+    } catch (Exception $e) {
+        $langId = 1;
+    }
+    
+    if ($bestMatch && $bestScore >= 0.3) { // Lower threshold for testing
+        // Matched - record question
+        try {
+            $qStmt = $pdo->prepare("INSERT INTO questions (text, language_id, confidence_score, created_at, updated_at) VALUES (?, ?, ?, datetime('now'), datetime('now'))");
+            $qStmt->execute([$message, $langId, $bestScore]);
+        } catch (Exception $e) {}
+        
+        // Get steps
+        try {
+            $stepsStmt = $pdo->prepare("SELECT * FROM procedure_steps WHERE legal_procedure_id = ? ORDER BY step_number ASC");
+            $stepsStmt->execute([$bestMatch['id']]);
+            $steps = $stepsStmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (Exception $e) {
+            $steps = [];
+        }
+        
+        return [
+            'response' => $bestMatch['description'] ?? $bestMatch['title'],
+            'procedure' => $bestMatch,
+            'steps' => $steps,
+            'matched' => true,
+            'confidence' => round($bestScore, 2),
+            'debug' => $debug
+        ];
+    } else {
+        // Not matched - record for admin review
+        try {
+            $uStmt = $pdo->prepare("INSERT INTO unanswered_questions (text, language_id, resolved, created_at, updated_at) VALUES (?, ?, 0, datetime('now'), datetime('now'))");
+            $uStmt->execute([$message, $langId]);
+        } catch (Exception $e) {}
+        
+        return [
+            'response' => 'عذراً، لم أتمكن من العثور على إجابة دقيقة لسؤالك. سيتم مراجعته من قبل الإدارة.',
+            'matched' => false,
+            'confidence' => round($bestScore, 2),
+            'debug' => $debug
+        ];
+    }
+}

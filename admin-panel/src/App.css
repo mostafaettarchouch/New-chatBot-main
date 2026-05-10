@@ -1,0 +1,112 @@
+﻿body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  direction: rtl;
+  background: #f7f8fb;
+  color: #222;
+}
+
+.admin-shell {
+  min-height: 100vh;
+}
+
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #003366;
+  color: white;
+  padding: 16px 24px;
+}
+
+.admin-header .logo {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.admin-header nav a {
+  color: white;
+  margin-left: 18px;
+  text-decoration: none;
+}
+
+.admin-main {
+  padding: 24px;
+}
+
+button {
+  cursor: pointer;
+}
+
+input, textarea, select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 8px;
+  margin-bottom: 16px;
+  border: 1px solid #c4c4c4;
+  border-radius: 8px;
+}
+
+.card {
+  background: white;
+  padding: 18px;
+  border-radius: 12px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  margin-bottom: 20px;
+}
+
+.card h2 {
+  margin-top: 0;
+}
+
+.table-container {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+td, th {
+  padding: 12px;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+th {
+  background: #f0f4ff;
+}
+
+.action-buttons button {
+  margin-left: 10px;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+}
+
+.action-buttons button.resolve {
+  background: #28a745;
+  color: white;
+}
+
+.action-buttons button.convert {
+  background: #ff9900;
+  color: white;
+}
+
+.action-buttons button.delete {
+  background: #dc3545;
+  color: white;
+}
+
+.form-row {
+  display: grid;
+  gap: 12px;
+}
+
+.section-title {
+  margin-bottom: 12px;
+}

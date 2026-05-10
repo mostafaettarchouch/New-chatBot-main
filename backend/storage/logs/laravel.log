@@ -1,0 +1,100 @@
+[2026-05-10 23:05:33] local.ERROR: Namespace declaration statement has to be the very first statement or after any declare call in the script {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Namespace declaration statement has to be the very first statement or after any declare call in the script at C:/Users/MOSTAFA ETTARCHOUCH/Downloads/New-chatBot-main/New-chatBot-main/backend/app/Http/Controllers/Admin/DashboardController.php:3)
+[stacktrace]
+#0 {main}
+"} 
+[2026-05-10 23:05:33] local.ERROR: Namespace declaration statement has to be the very first statement or after any declare call in the script {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Namespace declaration statement has to be the very first statement or after any declare call in the script at C:/Users/MOSTAFA ETTARCHOUCH/Downloads/New-chatBot-main/New-chatBot-main/backend/app/Http/Controllers/Admin/DashboardController.php:3)
+[stacktrace]
+#0 {main}
+"} 
+[2026-05-10 23:05:34] local.ERROR: Namespace declaration statement has to be the very first statement or after any declare call in the script {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Namespace declaration statement has to be the very first statement or after any declare call in the script at C:/Users/MOSTAFA ETTARCHOUCH/Downloads/New-chatBot-main/New-chatBot-main/backend/app/Http/Controllers/Admin/DashboardController.php:3)
+[stacktrace]
+#0 {main}
+"} 
+[2026-05-10 23:05:36] local.ERROR: Namespace declaration statement has to be the very first statement or after any declare call in the script {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Namespace declaration statement has to be the very first statement or after any declare call in the script at C:/Users/MOSTAFA ETTARCHOUCH/Downloads/New-chatBot-main/New-chatBot-main/backend/app/Http/Controllers/Admin/DashboardController.php:3)
+[stacktrace]
+#0 {main}
+"} 
+[2026-05-10 23:05:36] local.ERROR: Namespace declaration statement has to be the very first statement or after any declare call in the script {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Namespace declaration statement has to be the very first statement or after any declare call in the script at C:/Users/MOSTAFA ETTARCHOUCH/Downloads/New-chatBot-main/New-chatBot-main/backend/app/Http/Controllers/Admin/DashboardController.php:3)
+[stacktrace]
+#0 {main}
+"} 
+[2026-05-10 23:05:37] local.ERROR: Namespace declaration statement has to be the very first statement or after any declare call in the script {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Namespace declaration statement has to be the very first statement or after any declare call in the script at C:/Users/MOSTAFA ETTARCHOUCH/Downloads/New-chatBot-main/New-chatBot-main/backend/app/Http/Controllers/Admin/DashboardController.php:3)
+[stacktrace]
+#0 {main}
+"} 
+[2026-05-10 23:05:37] local.ERROR: Namespace declaration statement has to be the very first statement or after any declare call in the script {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Namespace declaration statement has to be the very first statement or after any declare call in the script at C:/Users/MOSTAFA ETTARCHOUCH/Downloads/New-chatBot-main/New-chatBot-main/backend/app/Http/Controllers/Admin/DashboardController.php:3)
+[stacktrace]
+#0 {main}
+"} 
+[2026-05-10 23:05:37] local.ERROR: Namespace declaration statement has to be the very first statement or after any declare call in the script {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Namespace declaration statement has to be the very first statement or after any declare call in the script at C:/Users/MOSTAFA ETTARCHOUCH/Downloads/New-chatBot-main/New-chatBot-main/backend/app/Http/Controllers/Admin/DashboardController.php:3)
+[stacktrace]
+#0 {main}
+"} 
+[2026-05-10 23:05:38] local.ERROR: Namespace declaration statement has to be the very first statement or after any declare call in the script {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Namespace declaration statement has to be the very first statement or after any declare call in the script at C:/Users/MOSTAFA ETTARCHOUCH/Downloads/New-chatBot-main/New-chatBot-main/backend/app/Http/Controllers/Admin/DashboardController.php:3)
+[stacktrace]
+#0 {main}
+"} 
+[2026-05-10 23:05:38] local.ERROR: Namespace declaration statement has to be the very first statement or after any declare call in the script {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Namespace declaration statement has to be the very first statement or after any declare call in the script at C:/Users/MOSTAFA ETTARCHOUCH/Downloads/New-chatBot-main/New-chatBot-main/backend/app/Http/Controllers/Admin/DashboardController.php:3)
+[stacktrace]
+#0 {main}
+"} 
+[2026-05-10 23:06:00] local.ERROR: Namespace declaration statement has to be the very first statement or after any declare call in the script {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Namespace declaration statement has to be the very first statement or after any declare call in the script at C:/Users/MOSTAFA ETTARCHOUCH/Downloads/New-chatBot-main/New-chatBot-main/backend/app/Http/Controllers/Admin/QuestionController.php:3)
+[stacktrace]
+#0 {main}
+"} 
+[2026-05-10 23:06:00] local.ERROR: Namespace declaration statement has to be the very first statement or after any declare call in the script {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Namespace declaration statement has to be the very first statement or after any declare call in the script at C:/Users/MOSTAFA ETTARCHOUCH/Downloads/New-chatBot-main/New-chatBot-main/backend/app/Http/Controllers/Admin/QuestionController.php:3)
+[stacktrace]
+#0 {main}
+"} 
+[2026-05-10 23:06:00] local.ERROR: Namespace declaration statement has to be the very first statement or after any declare call in the script {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Namespace declaration statement has to be the very first statement or after any declare call in the script at C:/Users/MOSTAFA ETTARCHOUCH/Downloads/New-chatBot-main/New-chatBot-main/backend/app/Http/Controllers/Admin/QuestionController.php:3)
+[stacktrace]
+#0 {main}
+"} 
+[2026-05-10 23:06:02] local.ERROR: Namespace declaration statement has to be the very first statement or after any declare call in the script {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Namespace declaration statement has to be the very first statement or after any declare call in the script at C:/Users/MOSTAFA ETTARCHOUCH/Downloads/New-chatBot-main/New-chatBot-main/backend/app/Http/Controllers/Admin/QuestionController.php:3)
+[stacktrace]
+#0 {main}
+"} 
+[2026-05-10 23:06:02] local.ERROR: Namespace declaration statement has to be the very first statement or after any declare call in the script {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Namespace declaration statement has to be the very first statement or after any declare call in the script at C:/Users/MOSTAFA ETTARCHOUCH/Downloads/New-chatBot-main/New-chatBot-main/backend/app/Http/Controllers/Admin/QuestionController.php:3)
+[stacktrace]
+#0 {main}
+"} 
+[2026-05-10 23:06:02] local.ERROR: Namespace declaration statement has to be the very first statement or after any declare call in the script {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Namespace declaration statement has to be the very first statement or after any declare call in the script at C:/Users/MOSTAFA ETTARCHOUCH/Downloads/New-chatBot-main/New-chatBot-main/backend/app/Http/Controllers/Admin/QuestionController.php:3)
+[stacktrace]
+#0 {main}
+"} 
+[2026-05-10 23:06:04] local.ERROR: Namespace declaration statement has to be the very first statement or after any declare call in the script {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Namespace declaration statement has to be the very first statement or after any declare call in the script at C:/Users/MOSTAFA ETTARCHOUCH/Downloads/New-chatBot-main/New-chatBot-main/backend/app/Http/Controllers/Admin/DashboardController.php:3)
+[stacktrace]
+#0 {main}
+"} 
+[2026-05-10 23:06:04] local.ERROR: Namespace declaration statement has to be the very first statement or after any declare call in the script {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Namespace declaration statement has to be the very first statement or after any declare call in the script at C:/Users/MOSTAFA ETTARCHOUCH/Downloads/New-chatBot-main/New-chatBot-main/backend/app/Http/Controllers/Admin/DashboardController.php:3)
+[stacktrace]
+#0 {main}
+"} 
+[2026-05-10 23:06:04] local.ERROR: Namespace declaration statement has to be the very first statement or after any declare call in the script {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Namespace declaration statement has to be the very first statement or after any declare call in the script at C:/Users/MOSTAFA ETTARCHOUCH/Downloads/New-chatBot-main/New-chatBot-main/backend/app/Http/Controllers/Admin/DashboardController.php:3)
+[stacktrace]
+#0 {main}
+"} 
+[2026-05-10 23:06:16] local.ERROR: Namespace declaration statement has to be the very first statement or after any declare call in the script {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Namespace declaration statement has to be the very first statement or after any declare call in the script at C:/Users/MOSTAFA ETTARCHOUCH/Downloads/New-chatBot-main/New-chatBot-main/backend/app/Http/Controllers/Admin/QuestionController.php:3)
+[stacktrace]
+#0 {main}
+"} 
+[2026-05-10 23:06:16] local.ERROR: Namespace declaration statement has to be the very first statement or after any declare call in the script {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Namespace declaration statement has to be the very first statement or after any declare call in the script at C:/Users/MOSTAFA ETTARCHOUCH/Downloads/New-chatBot-main/New-chatBot-main/backend/app/Http/Controllers/Admin/QuestionController.php:3)
+[stacktrace]
+#0 {main}
+"} 
+[2026-05-10 23:06:17] local.ERROR: Namespace declaration statement has to be the very first statement or after any declare call in the script {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Namespace declaration statement has to be the very first statement or after any declare call in the script at C:/Users/MOSTAFA ETTARCHOUCH/Downloads/New-chatBot-main/New-chatBot-main/backend/app/Http/Controllers/Admin/QuestionController.php:3)
+[stacktrace]
+#0 {main}
+"} 
+[2026-05-10 23:06:29] local.ERROR: Namespace declaration statement has to be the very first statement or after any declare call in the script {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Namespace declaration statement has to be the very first statement or after any declare call in the script at C:/Users/MOSTAFA ETTARCHOUCH/Downloads/New-chatBot-main/New-chatBot-main/backend/app/Http/Controllers/Admin/DashboardController.php:3)
+[stacktrace]
+#0 {main}
+"} 
+[2026-05-10 23:06:30] local.ERROR: Namespace declaration statement has to be the very first statement or after any declare call in the script {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Namespace declaration statement has to be the very first statement or after any declare call in the script at C:/Users/MOSTAFA ETTARCHOUCH/Downloads/New-chatBot-main/New-chatBot-main/backend/app/Http/Controllers/Admin/DashboardController.php:3)
+[stacktrace]
+#0 {main}
+"} 
+[2026-05-10 23:06:30] local.ERROR: Namespace declaration statement has to be the very first statement or after any declare call in the script {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Namespace declaration statement has to be the very first statement or after any declare call in the script at C:/Users/MOSTAFA ETTARCHOUCH/Downloads/New-chatBot-main/New-chatBot-main/backend/app/Http/Controllers/Admin/DashboardController.php:3)
+[stacktrace]
+#0 {main}
+"} 
